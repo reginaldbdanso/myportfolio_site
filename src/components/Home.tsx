@@ -1,4 +1,24 @@
 import { Code } from 'lucide-react';
+import { Eye } from 'lucide-react';
+
+const projects = [
+  {
+    id: 1,
+    title: 'E-Commerce Platform',
+    description: 'Full-stack e-commerce solution with React and Node.js',
+    technologies: ['React', 'Node.js', 'MongoDB'],
+    imageUrl: 'https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=1024',
+    liveUrl: 'https://example-ecommerce.com'
+  },
+  {
+    id: 2,
+    title: 'Project Management Tool',
+    description: 'Collaborative project management web application',
+    technologies: ['React', 'Express', 'PostgreSQL'],
+    imageUrl: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1024',
+    liveUrl: 'https://example-project-manager.com'
+  }
+];
 
 export default function Home() {
   return (
@@ -32,6 +52,49 @@ export default function Home() {
           through clean, efficient code.
         </p>
       </div>
+
+      {/* Projects Section */}
+      <section className="container mx-auto px-4 py-16">
+        <h2 className="text-3xl font-bold text-center mb-12">Featured Projects</h2>
+        <div className="grid md:grid-cols-2 gap-8">
+          {projects.map((project) => (
+            <div 
+              key={project.id} 
+              className="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+            >
+              <img 
+                src={project.imageUrl} 
+                alt={project.title} 
+                className="w-full h-48 object-cover"
+              />
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-4">{project.description}</p>
+                <div className="flex items-center justify-between">
+                  <div className="flex space-x-2">
+                    {project.technologies.map((tech) => (
+                      <span 
+                        key={tech} 
+                        className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-xs"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <a 
+                    href={project.liveUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 dark:text-blue-400 hover:underline flex items-center"
+                  >
+                    <Eye className="mr-2 w-5 h-5" /> View Project
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
